@@ -1,1 +1,23 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+@layer base {
+  html {
+      scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-mono bg-zinc-100 text-zinc-900;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-bold leading-tight;
+  }
+
+  p {
+    @apply leading-snug;
+  }
+
+	:focus-visible {
+			@apply outline-none;
+	}
+}
