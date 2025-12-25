@@ -42,7 +42,7 @@ function Skills() {
   } as const;
 
   return (
-    <section id="skills" className="min-h-screen w-full flex items-center">
+    <section id="skills" className="min-h-screen w-full flex items-center bg-linear-to-b from-step-2 to-step-3">
       <div className="mx-auto max-w-6xl w-full px-6">
         <motion.div
           className="mb-16"
@@ -54,7 +54,7 @@ function Skills() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-10 gap-16"
+          className="grid grid-cols-6 gap-16"
           variants={popIn}
           initial="hidden"
           whileInView="visible"
@@ -69,8 +69,8 @@ function Skills() {
                 initial={{ y: 0 }}
                 whileHover={{ y: 10 }}
               >
-                <Icon />
-                <span className="px-1 bg-zinc-900 text-zinc-100">{value}</span>
+                <Icon className="p-4 border-2 bg-surface border-line-2" />
+                <h2>{value}</h2>
               </motion.div>
             );
           })}

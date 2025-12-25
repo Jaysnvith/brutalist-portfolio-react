@@ -17,12 +17,18 @@ function Navbar() {
   ];
 
   const menuVariant = {
-    initial: { background: "var(--color-zinc-100)", color: "var(--color-zinc-900)" },
-    hover: { background: "var(--color-zinc-900)", color: "var(--color-zinc-100)" }
-  }
+    initial: {
+      backgroundColor: "transparent",
+      color: "var(--color-fg)",
+    },
+    hover: {
+      backgroundColor: "var(--color-surface)",
+      color: "var(--color-surface-fg)",
+    },
+  };
 
   return (
-    <nav className="flex items-center w-fit my-4 mx-auto text-2xl divide-x-2 border-x-2 divide-zinc-900">
+    <nav className="flex items-center w-fit my-4 mx-auto text-2xl divide-x-2 border-x-2 divide-fg border-fg">
       {menus.map((menu) => (
         <motion.a
           key={menu.label}

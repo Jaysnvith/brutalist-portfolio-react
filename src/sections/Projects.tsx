@@ -18,7 +18,7 @@ function Projects() {
   } as const;
 
   return (
-    <section id="projects" className="min-h-screen w-full flex items-center">
+    <section id="projects" className="min-h-screen w-full flex items-center bg-linear-to-b from-step-3 to-step-4">
       <div className="mx-auto max-w-6xl w-full px-6">
         <motion.div
           className="mb-16"
@@ -47,7 +47,7 @@ function Projects() {
               >
                 <h2 className="text-2xl">{name}</h2>
 
-                <img src={Image} alt={name} />
+                <img src={Image} alt={name} className="border-2 border-line-3"/>
 
                 <motion.div
                   className="overflow-hidden"
@@ -57,7 +57,7 @@ function Projects() {
                     opacity: hovered === id ? 1 : 0,
                   }}
                 >
-                  <TextBox>{desc}</TextBox>
+                  <TextBox className="border-line-3">{desc}</TextBox>
                 </motion.div>
               </motion.div>
             );

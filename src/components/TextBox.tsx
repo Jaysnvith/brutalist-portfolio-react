@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 
 type BoxProp = HTMLAttributes<HTMLDivElement>;
 
-function TextBox({ children, ...props }: BoxProp) {
+function TextBox({ children, className="", ...props }: BoxProp) {
   return (
     <p
-      className="p-1 text-pretty bg-zinc-900 text-zinc-100 border-4 border-zinc-500"
+      className={`p-1 text-pretty border-2 bg-surface text-surface-fg ${className}`}
       {...props}
     >
       {children}

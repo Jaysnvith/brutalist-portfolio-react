@@ -34,7 +34,7 @@ function About() {
   } as const;
 
   return (
-    <section id="about" className="min-h-screen w-full flex items-center">
+    <section id="about" className="min-h-screen w-full flex items-center bg-linear-to-b from-step-1 to-step-2">
       <div className="mx-auto max-w-6xl w-full px-6">
         <motion.div
           className="mb-16"
@@ -46,7 +46,7 @@ function About() {
         </motion.div>
 
         <motion.div variants={popIn} initial="hidden" whileInView="visible">
-          <TextBox>
+          <TextBox className="border-line-1">
             I’m an Information Systems graduate with experience in software
             development and IT operations. I enjoy creating and improving
             systems as well as diagnosing and solving technical problems. I’m
@@ -66,7 +66,7 @@ function About() {
                     <AnimatePresence>
                       {copied === id && (
                         <motion.span
-                          className="absolute top-12 bg-zinc-900 text-zinc-100 text-base"
+                          className="absolute top-12 text-base bg-surface text-surface-fg"
                           variants={popIn}
                           initial="hidden"
                           animate="visible"
@@ -80,7 +80,7 @@ function About() {
                     <motion.button
                       key={id}
                       onClick={() => handleCopy(value, id)}
-                      className="flex items-center p-1 bg-zinc-900 text-zinc-100"
+                      className="flex items-center p-1 bg-surface text-surface-fg"
                       variants={popIn}
                       initial="hidden"
                       whileInView="visible"
@@ -115,7 +115,7 @@ function About() {
                     href={value}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center p-1 bg-zinc-900 text-zinc-100"
+                    className="flex items-center p-1 bg-black text-white"
                     variants={popIn}
                     initial="hidden"
                     whileInView="visible"
