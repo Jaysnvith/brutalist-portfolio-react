@@ -1,5 +1,6 @@
-import { motion } from "motion/react";
-import Title from "../components/Title";
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import TitleBox from "../components/TitleBox";
 import { popIn } from "../animations/popIn";
 import { skillData } from "../data/skill.data";
 import Cpp from "../assets/svg/cpp.svg?react";
@@ -20,29 +21,31 @@ import Mysql from "../assets/svg/mysql.svg?react";
 import Postgresql from "../assets/svg/postgresql.svg?react";
 import MsqlServer from "../assets/svg/msqlserver.svg?react";
 
+const skillIcon = {
+  python: Python,
+  cpp: Cpp,
+  csharp: Csharp,
+  java: Java,
+  html: Html5,
+  php: Php,
+  css: Css3,
+  javascript: Js,
+  typescript: Ts,
+  django: Django,
+  react: React,
+  tailwind: TailwindCss,
+  bulma: BulmaUi,
+  bootstrap: Bootstrap5,
+  mysql: Mysql,
+  postgresql: Postgresql,
+  mssql: MsqlServer,
+} as const;
+
 function Skills() {
-  const skillIcon = {
-    python: Python,
-    cpp: Cpp,
-    csharp: Csharp,
-    java: Java,
-    html: Html5,
-    php: Php,
-    css: Css3,
-    javascript: Js,
-    typescript: Ts,
-    django: Django,
-    react: React,
-    tailwind: TailwindCss,
-    bulma: BulmaUi,
-    bootstrap: Bootstrap5,
-    mysql: Mysql,
-    postgresql: Postgresql,
-    mssql: MsqlServer,
-  } as const;
+  const [showDesc, setShowDesc] = useState<string | null>(null);
 
   return (
-    <section id="skills" className="min-h-screen w-full flex items-center bg-linear-to-b from-step-2 to-step-3">
+    <section id="skills" className="min-h-screen w-full flex items-center">
       <div className="mx-auto max-w-6xl w-full px-6">
         <motion.div
           className="mb-16"
@@ -50,30 +53,47 @@ function Skills() {
           initial="hidden"
           whileInView="visible"
         >
-          <Title contents={["#02", "Skills"]} />
+          <TitleBox contents={["#02", "Skills"]} />
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-6 gap-16"
+          className="grid grid-cols-3 md:grid-cols-6 place-items-center gap-4 p-1 ring-2 bg-surface ring-line-2 text-surface-fg"
           variants={popIn}
           initial="hidden"
           whileInView="visible"
         >
-          {skillData.map(({ id, value }) => {
-            const Icon = skillIcon[value as keyof typeof skillIcon];
+            {skillData.map(({ id, value }) => {
+              const Icon = skillIcon[value as keyof typeof skillIcon];
+              const activeDesc = showDesc === id;
+              return (
+                <motion.button
+                  key={id}
+                  className="relative p-1 text-start"
+                  initial={{ boxShadow: "0 0 0 0 rgba(0,0,0,0)" }}
+                  animate={{ 
+                    boxShadow: activeDesc ? "0 0 0 2px var(--color-surface-fg)" : "0 0 0 0 rgba(0,0,0,0)"
+                  }}
+                  onHoverStart={() => setShowDesc(id)}
+                  onHoverEnd={() => setShowDesc(null)}
+                  onClick={() => setShowDesc(activeDesc ? null : id)}
+                >
+                  <Icon className="w-12 md:w-18 hover:animate-pulse" />
 
-            return (
-              <motion.div
-                key={id}
-                className="flex flex-col items-center space-y-2"
-                initial={{ y: 0 }}
-                whileHover={{ y: 10 }}
-              >
-                <Icon className="p-4 border-2 bg-surface border-line-2" />
-                <h2>{value}</h2>
-              </motion.div>
-            );
-          })}
+                  <AnimatePresence>
+                    { activeDesc && (
+                      <motion.span
+                        className="absolute top-1 ring-2 text-sm bg-surface text-surface-fg"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                      >
+                        {value}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
+              );
+            })}
         </motion.div>
       </div>
     </section>

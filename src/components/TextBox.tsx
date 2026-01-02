@@ -6,7 +6,7 @@ type BoxProp = HTMLAttributes<HTMLDivElement>;
 function TextBox({ children, className="", ...props }: BoxProp) {
   return (
     <p
-      className={`p-1 text-pretty border-2 bg-surface text-surface-fg ${className}`}
+      className={`p-1 text-pretty ring-2 bg-surface text-surface-fg ${className}`}
       {...props}
     >
       {children}

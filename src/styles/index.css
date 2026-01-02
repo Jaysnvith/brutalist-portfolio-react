@@ -23,11 +23,7 @@
   }
 
   body {
-    @apply font-mono ;
-  }
-
-  h1, h2, h3, h4 {
-    @apply font-bold leading-tight;
+    @apply font-mono tracking-widest;
   }
 
   p {

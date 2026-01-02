@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion } from "motion/react";
-import Title from "../components/Title";
+import { AnimatePresence, motion } from "motion/react";
+import TitleBox from "../components/TitleBox";
 import TextBox from "../components/TextBox";
 import { popIn } from "../animations/popIn";
 import { projectData } from "../data/project.data";
@@ -8,61 +8,67 @@ import fantasia from "../assets/img/work-fantasia.png";
 import wiredCity from "../assets/img/work-wired-city.png";
 import wiredGunStore from "../assets/img/work-wired-gun-store.png";
 
-function Projects() {
-  const [hovered, setHovered] = useState<string | null>(null);
+const projectImage = {
+  "1": fantasia,
+  "2": wiredCity,
+  "3": wiredGunStore,
+} as const;
 
-  const projectImage = {
-    "1": fantasia,
-    "2": wiredCity,
-    "3": wiredGunStore,
-  } as const;
+function Projects() {
+  const [showDesc, setShowDesc] = useState<string | null>(null);
 
   return (
-    <section id="projects" className="min-h-screen w-full flex items-center bg-linear-to-b from-step-3 to-step-4">
-      <div className="mx-auto max-w-6xl w-full px-6">
+    <section id="projects" className="min-h-screen w-full flex items-center">
+      <div className="mx-auto max-w-6xl w-full p-4">
         <motion.div
           className="mb-16"
           variants={popIn}
           initial="hidden"
           whileInView="visible"
         >
-          <Title contents={["#03", "Projects"]} />
+          <TitleBox contents={["#03", "Projects"]} />
         </motion.div>
 
-        <motion.div
-          className="grid grid-cols-2 gap-8"
-          variants={popIn}
-          initial="hidden"
-          whileInView="visible"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {projectData.map(({ id, name, desc }) => {
             const Image = projectImage[id as keyof typeof projectImage];
-
+            const activeDesc = showDesc === id;
             return (
-              <motion.div
+              <motion.button
                 key={id}
-                className="flex flex-col space-y-2"
-                onHoverStart={() => setHovered(id)}
-                onHoverEnd={() => setHovered(null)}
+                onHoverStart={() => setShowDesc(id)}
+                onHoverEnd={() => setShowDesc(null)}
+                variants={popIn}
+                initial="hidden"
+                whileInView="visible"
               >
-                <h2 className="text-2xl">{name}</h2>
+                <h2 className="px-1 bg-surface text-surface-fg">
+                  {name.toUpperCase()}
+                </h2>
 
-                <img src={Image} alt={name} className="border-2 border-line-3"/>
+                <AnimatePresence>
+                  {activeDesc && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ ease: "linear" }}
+                    >
+                      <TextBox>{desc}</TextBox>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-                <motion.div
-                  className="overflow-hidden"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{
-                    height: hovered === id ? "auto" : 0,
-                    opacity: hovered === id ? 1 : 0,
-                  }}
-                >
-                  <TextBox className="border-line-3">{desc}</TextBox>
-                </motion.div>
-              </motion.div>
+                <motion.img
+                  src={Image}
+                  alt={name}
+                  className="ring-2 ring-line-3"
+                  onClick={() => setShowDesc(activeDesc ? null : id)}
+                />
+              </motion.button>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

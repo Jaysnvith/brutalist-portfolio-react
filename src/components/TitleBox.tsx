@@ -2,9 +2,9 @@ type TitleProp = {
   contents: string[];
 };
 
-function Title({ contents }: TitleProp) {
+function TitleBox({ contents }: TitleProp) {
   return (
-    <h1 className="flex items-center space-x-6 text-6xl">
+    <h1 className="inline-flex items-center border-4 divide-x-4 text-4xl border-surface-fg divide-surface-fg">
       {contents.map((content) => (
         <span className="px-1 bg-surface text-surface-fg">{content}</span>
       ))}
@@ -12,4 +12,4 @@ function Title({ contents }: TitleProp) {
   );
 }
 
-export default Title;
+export default TitleBox;
