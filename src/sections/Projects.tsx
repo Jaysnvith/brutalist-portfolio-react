@@ -7,11 +7,15 @@ import { projectData } from "../data/project.data";
 import fantasia from "../assets/img/work-fantasia.png";
 import wiredCity from "../assets/img/work-wired-city.png";
 import wiredGunStore from "../assets/img/work-wired-gun-store.png";
+import salesDashboard from "../assets/img/work-sales-dashboard.png";
+import guestbook from "../assets/img/work-guestbook.png";
 
 const projectImage = {
-  "1": fantasia,
-  "2": wiredCity,
-  "3": wiredGunStore,
+  fantasia: fantasia,
+  wiredCity: wiredCity,
+  wiredGunStore: wiredGunStore,
+  salesDashboard: salesDashboard,
+  guestbook: guestbook,
 } as const;
 
 function Projects() {
@@ -31,7 +35,7 @@ function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {projectData.map(({ id, name, desc }) => {
-            const Image = projectImage[id as keyof typeof projectImage];
+            const Image = projectImage[name as keyof typeof projectImage];
             const activeDesc = showDesc === id;
             return (
               <motion.button
@@ -68,6 +72,10 @@ function Projects() {
               </motion.button>
             );
           })}
+        </div>
+
+        <div className="text-center py-18 italic">
+          <p>All data displayed is mock data for demonstration purposes only.</p>
         </div>
       </div>
     </section>
