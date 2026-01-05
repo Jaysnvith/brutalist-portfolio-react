@@ -14,7 +14,7 @@ import Js from "../assets/svg/js.svg?react";
 import Ts from "../assets/svg/ts.svg?react";
 import Django from "../assets/svg/django.svg?react";
 import React from "../assets/svg/react.svg?react";
-import TailwindCss from "../assets/svg/tailwindCss.svg?react";
+import TailwindCss from "../assets/svg/tailwindcss.svg?react";
 import BulmaUi from "../assets/svg/bulmaui.svg?react";
 import Bootstrap5 from "../assets/svg/bootstrap5.svg?react";
 import Mysql from "../assets/svg/mysql.svg?react";
