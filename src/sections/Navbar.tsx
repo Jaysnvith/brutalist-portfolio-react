@@ -1,4 +1,4 @@
-import { useState, type JSX } from "react";
+import { useEffect, useState, type JSX } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { PiBrainFill, PiBriefcaseFill, PiIdentificationBadgeFill, PiList, PiMoonFill, PiSunFill } from "react-icons/pi";
 import { popIn } from "../animations/popIn";
@@ -9,7 +9,7 @@ type Menus = {
 };
 
 function Navbar() {
-  const [theme, setTheme] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const menus: Menus[] = [
@@ -17,6 +17,22 @@ function Navbar() {
     { label: "SKILLS", icon:<PiBrainFill/> },
     { label: "PROJECTS", icon:<PiBriefcaseFill /> },
   ];
+
+  useEffect(() => {
+    const theme = localStorage.getItem('theme')
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+      setIsDark(true)
+    }
+  }, [])
+
+  function toggleTheme() {
+    const next = !isDark
+    setIsDark(next)
+
+    document.documentElement.classList.toggle('dark', next)
+    localStorage.setItem('theme', next ? 'dark' : 'light')
+  }
 
   return (
     <>
@@ -44,10 +60,10 @@ function Navbar() {
             ))}
           </ul>
           <button
-            onClick={() => setTheme(!theme)}
+            onClick={toggleTheme}
             className="hidden md:flex items-center gap-2 hover:bg-surface-fg hover:text-surface transition-colors cursor-pointer"
           >
-            {theme ? (
+            {isDark ? (
               <>
                 <PiMoonFill />
                 <span>DARK</span>

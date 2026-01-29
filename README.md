@@ -21,6 +21,7 @@ This version is built with React, styled using Tailwind CSS, and animated with m
 
 - Fully animated with motion.dev
 - Section-based navigation via navbar
+- Dark mode toggle
 
 ## Tech Stack
 
