@@ -43,9 +43,12 @@ function Navbar() {
         transition={{ ease: "linear" }}
       >
         <div className="flex items-center justify-between min-h-12 max-w-6xl mx-auto px-6">
-          <span className="text-sm text-neutral-400">
-            PORTFOLIO // PANJI M.B
-          </span>
+          <p className="text-sm text-neutral-400">
+            <a href="https://github.com/Jaysnvith/brutalist-portfolio-react" className="hover:text-red-500">
+              PORTFOLIO
+            </a>
+            {' // '}PANJI M.B
+          </p>
           <ul className="hidden md:flex gap-8">
             {menus.map((menu) => (
               <li key={menu.label}>
