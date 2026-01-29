@@ -19,6 +19,9 @@
 }
 
 .dark {
+  --color-bg: oklch(0 0 0);
+  --color-fg: oklch(1 0 0);
+
   --color-step-1: oklch(0 0 0);
   --color-step-2: oklch(0 0 0);
   --color-step-3: oklch(0 0 0);
