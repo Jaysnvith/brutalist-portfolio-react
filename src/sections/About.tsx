@@ -9,11 +9,12 @@ import {
 } from "react-icons/pi";
 import { IconContext } from "react-icons";
 import TitleBox from "../components/TitleBox";
-import TextBox from "../components/TextBox";
 import { popIn } from "../animations/popIn";
 import { slideOut } from "../animations/slideOut";
 import { contactData } from "../data/contact.data";
 import { socialData } from "../data/social.data";
+import Card from "../components/Card";
+import Cursor from "../components/Cursor";
 
 const contactIcon = {
   email: PiEnvelopeFill,
@@ -52,13 +53,16 @@ function About() {
         </motion.div>
 
         <motion.div variants={popIn} initial="hidden" whileInView="visible">
-          <TextBox>
-            I’m an Information Systems graduate with experience in software
-            development and IT operations. I enjoy creating and improving
-            systems as well as diagnosing and solving technical problems. I’m
-            looking to grow and put my skills to work to achieve meaningful
-            results.
-          </TextBox>
+          <Card>
+            <p>
+              I’m an Information Systems graduate with experience in software
+              development and IT operations. I enjoy creating and improving
+              systems as well as diagnosing and solving technical problems. I’m
+              looking to grow and put my skills to work to achieve meaningful
+              results.
+              <Cursor />
+            </p>
+          </Card>
         </motion.div>
 
         <div className="flex justify-between items-center mt-8">

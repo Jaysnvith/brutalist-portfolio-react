@@ -1,8 +1,8 @@
 import { motion } from "motion/react";
-import Navbar from "./sections/Navbar"
-import About from "./sections/About"
-import Projects from "./sections/Projects"
-import Skills from "./sections/Skills"
+import Navbar from "./sections/Navbar";
+import About from "./sections/About";
+import Projects from "./sections/Projects";
+import Skills from "./sections/Skills";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
         </motion.div>
       </footer>
     </>
-  )
+  );
 }
 
 export default App;

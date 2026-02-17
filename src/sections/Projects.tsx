@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import TitleBox from "../components/TitleBox";
-import TextBox from "../components/TextBox";
 import { popIn } from "../animations/popIn";
 import { projectData } from "../data/project.data";
 import fantasia from "../assets/img/work-fantasia.webp";
@@ -9,6 +8,8 @@ import wiredCity from "../assets/img/work-wired-city.webp";
 import wiredGunStore from "../assets/img/work-wired-gun-store.webp";
 import salesDashboard from "../assets/img/work-sales-dashboard.webp";
 import guestbook from "../assets/img/work-guestbook.webp";
+import Card from "../components/Card";
+import Cursor from "../components/Cursor";
 
 const projectImage = {
   fantasia: fantasia,
@@ -32,6 +33,13 @@ function Projects() {
         >
           <TitleBox contents={["#03", "Projects"]} />
         </motion.div>
+
+        <Card className="mb-8">
+          <p>
+            All data displayed are for demonstration purposes only.
+            <Cursor />
+          </p>
+        </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {projectData.map(({ id, name, desc }) => {
@@ -58,24 +66,25 @@ function Projects() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ ease: "linear" }}
                     >
-                      <TextBox>{desc}</TextBox>
+                      <Card>
+                        <p>
+                          {desc}
+                          <Cursor />
+                        </p>
+                      </Card>
                     </motion.div>
                   )}
                 </AnimatePresence>
 
-            <motion.img
-              src={Image}
-              alt={name}
-              className="ring-2 ring-line-3"
-              onClick={() => setShowDesc(activeDesc ? null : id)}
-            />
+                <motion.img
+                  src={Image}
+                  alt={name}
+                  className="ring-2 ring-line-3"
+                  onClick={() => setShowDesc(activeDesc ? null : id)}
+                />
               </motion.button>
             );
           })}
-        </div>
-
-        <div className="text-center py-18 italic text-fg">
-          <p>All data displayed is mock data for demonstration purposes only.</p>
         </div>
       </div>
     </section>
