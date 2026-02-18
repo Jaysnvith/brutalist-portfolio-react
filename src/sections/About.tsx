@@ -8,7 +8,6 @@ import {
   PiThreadsLogoFill,
 } from "react-icons/pi";
 import { IconContext } from "react-icons";
-import TitleBox from "../components/TitleBox";
 import { popIn } from "../animations/popIn";
 import { slideOut } from "../animations/slideOut";
 import { contactData } from "../data/contact.data";
@@ -44,13 +43,15 @@ function About() {
     <section id="about" className="min-h-screen w-full flex items-center">
       <div className="mx-auto max-w-6xl w-full px-6">
         <motion.div
-          className="mb-16"
+          className="flex mb-16 text-4xl"
           variants={popIn}
           initial="hidden"
           whileInView="visible"
         >
-          <TitleBox contents={["#01", "About me"]} />
+          <Card className="px-2">#01</Card>
+          <Card className="px-2">ABOUT ME</Card>
         </motion.div>
+
 
         <motion.div variants={popIn} initial="hidden" whileInView="visible">
           <Card>

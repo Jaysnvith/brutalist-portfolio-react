@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import TitleBox from "../components/TitleBox";
 import { popIn } from "../animations/popIn";
 import { projectData } from "../data/project.data";
 import fantasia from "../assets/img/work-fantasia.webp";
@@ -26,12 +25,13 @@ function Projects() {
     <section id="projects" className="min-h-screen w-full flex items-center">
       <div className="mx-auto max-w-6xl w-full p-4">
         <motion.div
-          className="mb-16"
+          className="flex mb-16 text-4xl"
           variants={popIn}
           initial="hidden"
           whileInView="visible"
         >
-          <TitleBox contents={["#03", "Projects"]} />
+          <Card className="px-2">#03</Card>
+          <Card className="px-2">MY PROJECTS</Card>
         </motion.div>
 
         <Card className="mb-8">

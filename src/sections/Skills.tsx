@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import TitleBox from "../components/TitleBox";
 import { popIn } from "../animations/popIn";
 import { skillData } from "../data/skill.data";
 import Cpp from "../assets/svg/cpp.svg?react";
@@ -20,6 +19,7 @@ import Bootstrap5 from "../assets/svg/bootstrap5.svg?react";
 import Mysql from "../assets/svg/mysql.svg?react";
 import Postgresql from "../assets/svg/postgresql.svg?react";
 import MsqlServer from "../assets/svg/msqlserver.svg?react";
+import Card from "../components/Card";
 
 const skillIcon = {
   python: Python,
@@ -48,12 +48,13 @@ function Skills() {
     <section id="skills" className="min-h-screen w-full flex items-center">
       <div className="mx-auto max-w-6xl w-full px-6">
         <motion.div
-          className="mb-16"
+          className="flex mb-16 text-4xl"
           variants={popIn}
           initial="hidden"
           whileInView="visible"
         >
-          <TitleBox contents={["#02", "Skills"]} />
+          <Card className="px-2">#02</Card>
+          <Card className="px-2">MY SKILLS</Card>
         </motion.div>
 
         <motion.div
