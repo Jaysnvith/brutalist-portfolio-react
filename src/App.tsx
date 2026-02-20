@@ -11,10 +11,18 @@ function App() {
         <Navbar />
       </header>
 
-      <main className="bg-[linear-gradient(to_bottom,var(--color-step-1),var(--color-step-2),var(--color-step-3),var(--color-step-4))]">
-        <About />
-        <Skills />
-        <Projects />
+      <main className="mx-auto max-w-7xl w-full px-4">
+        <section id="about" className="flex min-h-screen w-full items-center py-20">
+          <About />
+        </section>
+
+        <section id="skills" className="flex min-h-screen w-full items-center py-20">
+          <Skills />
+        </section>
+
+        <section id="projects" className="min-h-screen w-full py-20">
+          <Projects />
+        </section>
       </main>
 
       <footer className="md:sticky md:bottom-0 z-50">

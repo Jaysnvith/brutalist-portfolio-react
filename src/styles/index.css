@@ -34,7 +34,7 @@
   }
 
   body {
-    @apply font-mono tracking-widest;
+    @apply font-mono tracking-widest bg-[linear-gradient(to_bottom,var(--color-step-1),var(--color-step-2),var(--color-step-3),var(--color-step-4))];
   }
 
   p {

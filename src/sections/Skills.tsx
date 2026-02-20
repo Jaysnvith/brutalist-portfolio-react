@@ -45,59 +45,57 @@ function Skills() {
   const [showDesc, setShowDesc] = useState<string | null>(null);
 
   return (
-    <section id="skills" className="min-h-screen w-full flex items-center">
-      <div className="mx-auto max-w-6xl w-full px-6">
-        <motion.div
-          className="flex mb-16 text-4xl"
-          variants={popIn}
-          initial="hidden"
-          whileInView="visible"
-        >
-          <Card className="px-2">#02</Card>
-          <Card className="px-2">MY SKILLS</Card>
-        </motion.div>
+    <div>
+      <motion.div
+        className="flex mb-16 text-4xl"
+        variants={popIn}
+        initial="hidden"
+        whileInView="visible"
+      >
+        <Card className="px-2">#02</Card>
+        <Card className="px-2">MY SKILLS</Card>
+      </motion.div>
 
-        <motion.div
-          className="grid grid-cols-3 md:grid-cols-6 place-items-center gap-4 p-1 ring-2 bg-surface ring-line-2 text-surface-fg"
-          variants={popIn}
-          initial="hidden"
-          whileInView="visible"
-        >
-            {skillData.map(({ id, value }) => {
-              const Icon = skillIcon[value as keyof typeof skillIcon];
-              const activeDesc = showDesc === id;
-              return (
-                <motion.button
-                  key={id}
-                  className="relative p-1 text-start"
-                  initial={{ boxShadow: "0 0 0 0 rgba(0,0,0,0)" }}
-                  animate={{ 
-                    boxShadow: activeDesc ? "0 0 0 2px var(--color-surface-fg)" : "0 0 0 0 rgba(0,0,0,0)"
-                  }}
-                  onHoverStart={() => setShowDesc(id)}
-                  onHoverEnd={() => setShowDesc(null)}
-                  onClick={() => setShowDesc(activeDesc ? null : id)}
-                >
-                  <Icon className="w-12 md:w-18 hover:animate-pulse" />
+      <motion.div
+        className="grid grid-cols-3 md:grid-cols-6 place-items-center gap-4 p-1 ring-2 bg-surface ring-line-2 text-surface-fg"
+        variants={popIn}
+        initial="hidden"
+        whileInView="visible"
+      >
+          {skillData.map(({ id, value }) => {
+            const Icon = skillIcon[value as keyof typeof skillIcon];
+            const activeDesc = showDesc === id;
+            return (
+              <motion.button
+                key={id}
+                className="relative p-1 text-start"
+                initial={{ boxShadow: "0 0 0 0 rgba(0,0,0,0)" }}
+                animate={{ 
+                  boxShadow: activeDesc ? "0 0 0 2px var(--color-surface-fg)" : "0 0 0 0 rgba(0,0,0,0)"
+                }}
+                onHoverStart={() => setShowDesc(id)}
+                onHoverEnd={() => setShowDesc(null)}
+                onClick={() => setShowDesc(activeDesc ? null : id)}
+              >
+                <Icon className="w-12 md:w-18 hover:animate-pulse" />
 
-                  <AnimatePresence>
-                    { activeDesc && (
-                      <motion.span
-                        className="absolute top-1 ring-2 text-sm bg-surface text-surface-fg"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                      >
-                        {value}
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </motion.button>
-              );
-            })}
-        </motion.div>
-      </div>
-    </section>
+                <AnimatePresence>
+                  { activeDesc && (
+                    <motion.span
+                      className="absolute top-1 ring-2 text-sm bg-surface text-surface-fg"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                    >
+                      {value}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            );
+          })}
+      </motion.div>
+    </div>
   );
 }
 
