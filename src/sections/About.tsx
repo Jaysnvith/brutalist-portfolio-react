@@ -51,7 +51,12 @@ function About() {
         <Card className="px-2">ABOUT ME</Card>
       </motion.div>
 
-      <motion.div variants={popIn} initial="hidden" whileInView="visible">
+      <motion.div
+        className="mb-32"
+        variants={popIn}
+        initial="hidden"
+        whileInView="visible"
+      >
         <Card>
           <p>
             I’m an Information Systems graduate with experience in software
@@ -64,12 +69,25 @@ function About() {
         </Card>
       </motion.div>
 
-      <div className="flex justify-between items-center mt-8">
-        <IconContext.Provider value={{ size: "24" }}>
-          <div className="flex gap-4">
+      <motion.div
+        className="flex flex-col items-center gap-6"
+        variants={popIn}
+        initial="hidden"
+        whileInView="visible"
+      >
+        <Card>
+          <p>
+            Get in touch...
+            <Cursor />
+          </p>
+        </Card>
+
+        <div className="flex gap-4">
+          <IconContext.Provider value={{ size: "42" }}>
             {contactData.map(({ id, name, value }) => {
               const Icon = contactIcon[name as keyof typeof contactIcon];
               const activeContact = contactHovered === id;
+
               return (
                 <div className="relative inline-flex">
                   <AnimatePresence>
@@ -90,14 +108,10 @@ function About() {
                     key={id}
                     onClick={() => handleCopy(value, id)}
                     className="flex items-center p-1 active:ring-2 hover:animate-pulse bg-surface text-surface-fg"
-                    variants={popIn}
-                    initial="hidden"
-                    whileInView="visible"
                     onHoverStart={() => setContactHovered(id)}
                     onHoverEnd={() => setContactHovered(null)}
                   >
                     <Icon />
-
                     <AnimatePresence>
                       {activeContact && (
                         <motion.span
@@ -114,12 +128,11 @@ function About() {
                 </div>
               );
             })}
-          </div>
 
-          <div className="flex justify-center gap-4">
             {socialData.map(({ id, name, value }) => {
               const Icon = skillMap[name as keyof typeof skillMap];
               const activeSocial = socialHovered === id;
+
               return (
                 <motion.a
                   key={id}
@@ -127,14 +140,10 @@ function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center p-1 active:ring-2 hover:animate-pulse bg-surface text-surface-fg transition-shadow"
-                  variants={popIn}
-                  initial="hidden"
-                  whileInView="visible"
                   onHoverStart={() => setSocialHovered(id)}
                   onHoverEnd={() => setSocialHovered(null)}
                 >
                   <Icon />
-
                   <AnimatePresence>
                     {activeSocial && (
                       <motion.span
@@ -150,9 +159,9 @@ function About() {
                 </motion.a>
               );
             })}
-          </div>
-        </IconContext.Provider>
-      </div>
+          </IconContext.Provider>
+        </div>
+      </motion.div>
     </div>
   );
 }

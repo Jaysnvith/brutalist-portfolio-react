@@ -33,29 +33,34 @@ function Projects() {
         <Card className="px-2">MY PROJECTS</Card>
       </motion.div>
 
-      <Card className="mb-8">
-        <p>
-          All data displayed are for demonstration purposes only.
-          <Cursor />
-        </p>
-      </Card>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
         {projectData.map(({ id, name, desc }) => {
           const Image = projectImage[name as keyof typeof projectImage];
           const activeDesc = showDesc === id;
+
           return (
             <motion.button
               key={id}
+              className="flex flex-col items-center gap-4"
               onHoverStart={() => setShowDesc(id)}
               onHoverEnd={() => setShowDesc(null)}
               variants={popIn}
               initial="hidden"
               whileInView="visible"
             >
-              <h2 className="px-1 bg-surface text-surface-fg">
-                {name.toUpperCase()}
-              </h2>
+              <Card>
+                <p>
+                  {name}
+                  <Cursor />
+                </p>
+              </Card>
+
+              <motion.img
+                src={Image}
+                alt={name}
+                className="shadow-md ring-2 ring-line-3"
+                onClick={() => setShowDesc(activeDesc ? null : id)}
+              />
 
               <AnimatePresence>
                 {activeDesc && (
@@ -74,17 +79,17 @@ function Projects() {
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              <motion.img
-                src={Image}
-                alt={name}
-                className="ring-2 ring-line-3"
-                onClick={() => setShowDesc(activeDesc ? null : id)}
-              />
             </motion.button>
           );
         })}
       </div>
+
+      <Card>
+        <p>
+          All data displayed are for demonstration purposes only.
+          <Cursor />
+        </p>
+      </Card>
     </div>
   );
 }

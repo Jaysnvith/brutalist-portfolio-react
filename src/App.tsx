@@ -12,11 +12,14 @@ function App() {
       </header>
 
       <main className="mx-auto max-w-7xl w-full px-4">
-        <section id="about" className="flex min-h-screen w-full items-center py-20">
+        <section
+          id="about"
+          className="flex min-h-screen w-full items-center py-20"
+        >
           <About />
         </section>
 
-        <section id="skills" className="flex min-h-screen w-full items-center py-20">
+        <section id="skills" className="min-h-screen w-full py-20">
           <Skills />
         </section>
 
