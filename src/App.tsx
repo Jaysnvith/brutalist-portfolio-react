@@ -3,6 +3,7 @@ import Navbar from "./sections/Navbar";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
+import { BackgroundSquare } from "./components/BackgroundSquare";
 
 function App() {
   return (
@@ -11,7 +12,12 @@ function App() {
         <Navbar />
       </header>
 
-      <main className="mx-auto max-w-7xl w-full px-4">
+      <div className="fixed top-28 -z-50 w-full">
+        <BackgroundSquare />
+      </div>
+
+      <main className="mx-auto max-w-7xl px-4">
+
         <section
           id="about"
           className="flex min-h-screen w-full items-center py-20"
