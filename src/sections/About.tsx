@@ -59,11 +59,10 @@ function About() {
       >
         <Card>
           <p>
-            I’m an Information Systems graduate with experience in software
-            development and IT operations. I enjoy creating and improving
-            systems as well as diagnosing and solving technical problems. I’m
-            looking to grow and put my skills to work to achieve meaningful
-            results.
+            Software developer experienced in building practical business applications, including internal
+            dashboards and operational systems that streamline workflows and support company-wide operations.
+            With additional background in IT operations, giving me practical insight into both application
+            development and infrastructure support.
             <Cursor />
           </p>
         </Card>
