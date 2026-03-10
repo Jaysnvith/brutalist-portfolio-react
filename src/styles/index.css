@@ -2,20 +2,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-bg: oklch(1 0 0);
-  --color-fg: oklch(0 0 0);
+  /* Base */
+  --color-background: oklch(0.0383 0.0265 264.05);
+  --color-foreground: oklch(0.7763 0 0);
+  --color-accent: oklch(0.6217 0.2302 30.06);
 
-  --color-surface: oklch(0 0 0);
-  --color-surface-fg: oklch(1 0 0);
-
-  --color-line-1: oklch(0.5854 0.1999 227);
-  --color-line-2: oklch(0.5854 0.1999 29);
-  --color-line-3: oklch(0.8793 0.1735 113);
-
-  --color-step-1: oklch(0.7892 0.0619 89.39);
-  --color-step-2: oklch(0.614 0.0632 170.69);
-  --color-step-3: oklch(0.5188 0.2366 294.13);
-  --color-step-4: oklch(0.7188 0.1362 137.93);
+  /* Gradient */
+  --color-gradient-1: oklch(0.3142 0.089 268.84);
+  --color-gradient-2: oklch(0.3414 0.0886 359.22);
 }
 
 @layer base {
@@ -24,7 +18,7 @@
   }
 
   body {
-    @apply font-mono tracking-widest bg-[linear-gradient(to_bottom,var(--color-step-1),var(--color-step-2),var(--color-step-3),var(--color-step-4))];
+    @apply font-mono tracking-widest;
   }
 
   p {

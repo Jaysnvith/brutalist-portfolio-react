@@ -4,11 +4,11 @@ export function BackgroundSquare() {
   const items = Array.from({ length: 8*8 }, (_, idx) => idx)
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-8 gap-24 justify-items-center">
+    <div className="grid grid-cols-2 md:grid-cols-8 gap-20 justify-items-center">
       {items.map(idx => (
         <motion.div
           key={idx}
-          className="w-20 h-20 border-3 border-surface-fg/30"
+          className="w-20 h-20 border-3 border-foreground/30"
           animate={{ 
             rotate: [0, 180, 180, 180],
             scale: [1, 1, 1.2, 1],

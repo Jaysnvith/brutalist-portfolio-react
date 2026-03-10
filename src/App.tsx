@@ -12,12 +12,11 @@ function App() {
         <Navbar />
       </header>
 
-      <div className="fixed top-28 -z-50 w-full">
+      <div className="fixed inset-0 -z-50 py-20 bg-linear-to-b from-gradient-1 to-gradient-2">
         <BackgroundSquare />
       </div>
 
       <main className="mx-auto max-w-7xl px-4">
-
         <section
           id="about"
           className="flex min-h-screen w-full items-center py-20"
@@ -36,7 +35,7 @@ function App() {
 
       <footer className="md:sticky md:bottom-0 z-50">
         <motion.div
-          className="bg-surface text-surface-fg"
+          className="bg-background text-foreground"
           initial={{ y: 100 }}
           animate={{ y: 0 }}
           transition={{ ease: "linear" }}

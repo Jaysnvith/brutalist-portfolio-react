@@ -58,7 +58,7 @@ function Projects() {
               <motion.img
                 src={Image}
                 alt={name}
-                className="shadow-md ring-2 ring-line-3"
+                className="shadow-md ring-2 ring-accent"
                 onClick={() => setShowDesc(activeDesc ? null : id)}
               />
 

@@ -72,7 +72,7 @@ function Skills() {
             </p>
           </Card>
 
-          <Card className="grid grid-cols-3 md:grid-cols-6 gap-4 ring-line-2">
+          <Card className="grid grid-cols-3 md:grid-cols-6 gap-4 ring-accent">
             {skillData
               .filter((skill) => skill.category === category)
               .map(({ id, value }) => {
@@ -86,7 +86,7 @@ function Skills() {
                     initial={{ boxShadow: "0 0 0 0 rgba(0,0,0,0)" }}
                     animate={{
                       boxShadow: activeDesc
-                        ? "0 0 0 2px var(--color-surface-fg)"
+                        ? "0 0 0 2px var(--color-foreground)"
                         : "0 0 0 0 rgba(0,0,0,0)",
                     }}
                     onHoverStart={() => setShowDesc(id)}
@@ -94,10 +94,11 @@ function Skills() {
                     onClick={() => setShowDesc(activeDesc ? null : id)}
                   >
                     <Icon className="w-18 hover:animate-pulse" />
+                    
                     <AnimatePresence>
                       {activeDesc && (
                         <motion.span
-                          className="absolute top-1 z-30 ring-2 text-sm bg-surface text-surface-fg"
+                          className="absolute top-1 z-30 ring-2 text-sm bg-background text-foreground"
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}

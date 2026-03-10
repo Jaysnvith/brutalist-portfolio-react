@@ -92,7 +92,7 @@ function About() {
                   <AnimatePresence>
                     {copied === id && (
                       <motion.span
-                        className="absolute top-12 text-base bg-surface text-surface-fg"
+                        className="absolute top-12 text-base bg-background text-foreground"
                         variants={popIn}
                         initial="hidden"
                         animate="visible"
@@ -106,7 +106,7 @@ function About() {
                   <motion.button
                     key={id}
                     onClick={() => handleCopy(value, id)}
-                    className="flex items-center p-1 active:ring-2 hover:animate-pulse bg-surface text-surface-fg"
+                    className="flex items-center p-1 active:ring-2 hover:animate-pulse bg-background text-foreground"
                     onHoverStart={() => setContactHovered(id)}
                     onHoverEnd={() => setContactHovered(null)}
                   >
@@ -138,7 +138,7 @@ function About() {
                   href={value}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center p-1 active:ring-2 hover:animate-pulse bg-surface text-surface-fg transition-shadow"
+                  className="flex items-center p-1 active:ring-2 hover:animate-pulse bg-background text-foreground transition-shadow"
                   onHoverStart={() => setSocialHovered(id)}
                   onHoverEnd={() => setSocialHovered(null)}
                 >

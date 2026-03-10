@@ -25,7 +25,7 @@ function Navbar() {
   return (
     <>
       <motion.nav
-        className="bg-surface text-surface-fg"
+        className="bg-background text-foreground"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ ease: "linear" }}
@@ -34,7 +34,7 @@ function Navbar() {
           <p className="text-sm text-neutral-400">
             <a
               href="https://github.com/Jaysnvith/brutalist-portfolio-react"
-              className="hover:text-red-500"
+              className="hover:text-accent"
             >
               PORTFOLIO
             </a>
@@ -46,7 +46,7 @@ function Navbar() {
               <li key={menu.label}>
                 <a
                   href={`#${menu.label.toLocaleLowerCase()}`}
-                  className="flex items-center gap-2 hover:bg-surface-fg hover:text-surface transition-colors"
+                  className="flex items-center gap-2 hover:bg-foreground hover:text-background transition-colors"
                 >
                   {menu.icon}
                   <span>{menu.label}</span>
@@ -67,7 +67,7 @@ function Navbar() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            className="bg-surface text-surface-fg"
+            className="bg-background text-foreground"
             variants={popIn}
             initial="hidden"
             animate="visible"
@@ -78,7 +78,7 @@ function Navbar() {
                 <li key={menu.label}>
                   <a
                     href={`#${menu.label.toLocaleLowerCase()}`}
-                    className="flex items-center gap-2 active:bg-surface-fg active:text-surface transition-colors"
+                    className="flex items-center gap-2 active:bg-foreground active:text-background transition-colors"
                   >
                     {menu.icon}
                     <span>{menu.label}</span>
