@@ -30,7 +30,7 @@ function Navbar() {
         animate={{ y: 0 }}
         transition={{ ease: "linear" }}
       >
-        <div className="flex items-center justify-between min-h-12 max-w-6xl mx-auto px-6">
+        <div className="flex items-center justify-between min-h-12 max-w-7xl mx-auto px-6">
           <p className="text-sm text-neutral-400">
             <a
               href="https://github.com/Jaysnvith/brutalist-portfolio-react"

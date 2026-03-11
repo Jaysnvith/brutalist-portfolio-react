@@ -1,5 +1,5 @@
-import { motion } from "motion/react";
 import Navbar from "./sections/Navbar";
+import Footer from "./sections/Footer";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
@@ -34,17 +34,7 @@ function App() {
       </main>
 
       <footer className="md:sticky md:bottom-0 z-50">
-        <motion.div
-          className="bg-background text-foreground"
-          initial={{ y: 100 }}
-          animate={{ y: 0 }}
-          transition={{ ease: "linear" }}
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between min-h-12 max-w-6xl mx-auto px-6">
-            <p className="hidden md:block">DESIGNED & BUILT BY PANJI M.B</p>
-            <p>BUILT WITH REACT © {new Date().getFullYear()}</p>
-          </div>
-        </motion.div>
+        <Footer />
       </footer>
     </>
   );
