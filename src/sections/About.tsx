@@ -58,7 +58,7 @@ function About() {
         whileInView="visible"
       >
         <Card>
-          <p>
+          <p className="text-left">
             Software developer experienced in building practical business applications, including internal
             dashboards and operational systems that streamline workflows and support company-wide operations.
             With additional background in IT operations, giving me practical insight into both application

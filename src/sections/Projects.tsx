@@ -34,7 +34,7 @@ function Projects() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-        {projectData.map(({ id, name, desc }) => {
+        {projectData.map(({ id, name, title, desc }) => {
           const Image = projectImage[name as keyof typeof projectImage];
           const activeDesc = showDesc === id;
 
@@ -50,7 +50,7 @@ function Projects() {
             >
               <Card>
                 <p>
-                  {name}
+                  {title}
                   <Cursor />
                 </p>
               </Card>
@@ -71,7 +71,7 @@ function Projects() {
                     transition={{ ease: "linear" }}
                   >
                     <Card>
-                      <p>
+                      <p className="text-left">
                         {desc}
                         <Cursor />
                       </p>
