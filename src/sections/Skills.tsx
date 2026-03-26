@@ -20,7 +20,6 @@ import Bootstrap5 from "../assets/svg/bootstrap5.svg?react";
 import Mysql from "../assets/svg/mysql.svg?react";
 import Postgresql from "../assets/svg/postgresql.svg?react";
 import MsqlServer from "../assets/svg/msqlserver.svg?react";
-import Cursor from "../components/Cursor";
 
 const skillIcon = {
   python: Python,
@@ -43,6 +42,9 @@ const skillIcon = {
 } as const;
 
 function Skills() {
+  const [selectCategory, setSelectCategory] = useState<string | null>(
+    "language",
+  );
   const [showDesc, setShowDesc] = useState<string | null>(null);
 
   return (
@@ -57,62 +59,71 @@ function Skills() {
         <Card className="px-2">MY SKILLS</Card>
       </motion.div>
 
-      {categories.map((category) => (
-        <motion.div
-          key={category}
-          className="flex flex-col items-center gap-6 mb-12"
-          variants={popIn}
-          initial="hidden"
-          whileInView="visible"
-        >
-          <Card>
-            <p>
-              {category}
-              <Cursor />
-            </p>
-          </Card>
+      <motion.div variants={popIn} initial="hidden" whileInView="visible">
+        <Card className="grid grid-rows-3 md:grid-rows-2 grid-cols-3 md:grid-cols-5 gap-6">
+          {skillData
+            .filter((skill) => skill.category === selectCategory)
+            .map(({ id, value }) => {
+              const Icon = skillIcon[value as keyof typeof skillIcon];
+              const activeDesc = showDesc === id;
 
-          <Card className="grid grid-cols-3 md:grid-cols-6 gap-4 ring-accent">
-            {skillData
-              .filter((skill) => skill.category === category)
-              .map(({ id, value }) => {
-                const Icon = skillIcon[value as keyof typeof skillIcon];
-                const activeDesc = showDesc === id;
+              return (
+                <motion.button
+                  key={id}
+                  className="relative m-4 p-1"
+                  initial={{ boxShadow: "0 0 0 0 rgba(0,0,0,0)" }}
+                  animate={{
+                    boxShadow: activeDesc
+                      ? "0 0 0 2px var(--color-foreground)"
+                      : "0 0 0 0 rgba(0,0,0,0)",
+                  }}
+                  onHoverStart={() => setShowDesc(id)}
+                  onHoverEnd={() => setShowDesc(null)}
+                  onClick={() => setShowDesc(activeDesc ? null : id)}
+                >
+                  <Icon className="hover:animate-pulse" />
 
-                return (
-                  <motion.button
-                    key={id}
-                    className="relative p-1 text-start"
-                    initial={{ boxShadow: "0 0 0 0 rgba(0,0,0,0)" }}
-                    animate={{
-                      boxShadow: activeDesc
-                        ? "0 0 0 2px var(--color-foreground)"
-                        : "0 0 0 0 rgba(0,0,0,0)",
-                    }}
-                    onHoverStart={() => setShowDesc(id)}
-                    onHoverEnd={() => setShowDesc(null)}
-                    onClick={() => setShowDesc(activeDesc ? null : id)}
-                  >
-                    <Icon className="w-18 hover:animate-pulse" />
-                    
-                    <AnimatePresence>
-                      {activeDesc && (
-                        <motion.span
-                          className="absolute top-1 z-30 ring-2 text-sm bg-background text-foreground"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                        >
-                          {value}
-                        </motion.span>
-                      )}
-                    </AnimatePresence>
-                  </motion.button>
-                );
-              })}
-          </Card>
-        </motion.div>
-      ))}
+                  <AnimatePresence>
+                    {activeDesc && (
+                      <motion.span
+                        className="absolute top-1 left-1 ring-2 bg-background text-foreground"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                      >
+                        {value}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
+              );
+            })}
+        </Card>
+      </motion.div>
+
+      <motion.div
+        className="-mt-2 ml-6 w-fit"
+        variants={popIn}
+        initial="hidden"
+        whileInView="visible"
+      >
+        <Card className="flex flex-col items-start gap-2">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectCategory(category)}
+              className="uppercase"
+            >
+              <span className={`${selectCategory === category ? "visible" : "invisible"}`}>
+                ►
+              </span>
+              <span className="mx-2 py-1 hover:bg-foreground hover:text-background transition-colors">
+                {category}
+              </span>
+            </button>
+          ))}
+        </Card>
+      </motion.div>
     </div>
   );
 }
