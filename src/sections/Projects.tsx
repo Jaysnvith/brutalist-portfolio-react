@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, stagger } from "motion/react";
 import { popIn } from "../animations/popIn";
 import { projectData } from "../data/project.data";
 import fantasia from "../assets/img/work-fantasia.webp";
@@ -9,6 +9,8 @@ import salesDashboard from "../assets/img/work-sales-dashboard.webp";
 import guestbook from "../assets/img/work-guestbook.webp";
 import Card from "../components/Card";
 import Cursor from "../components/Cursor";
+import { fadeIn } from "../animations/fadeIn";
+import { RevealText } from "../components/RevealText";
 
 const projectImage = {
   fantasia: fantasia,
@@ -28,47 +30,49 @@ function Projects() {
         variants={popIn}
         initial="hidden"
         whileInView="visible"
+        transition={{ ease: 'linear', duration: 0.3 }}
       >
         <Card className="px-2">#03</Card>
         <Card className="px-2">MY PROJECTS</Card>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-        {projectData.map(({ id, name, title, desc }) => {
+      <div className="grid grid-cols-2 gap-6 mb-12">
+        {projectData.map(({ id, name, desc }) => {
           const Image = projectImage[name as keyof typeof projectImage];
           const activeDesc = showDesc === id;
 
           return (
             <motion.button
               key={id}
-              className="flex flex-col items-center gap-4"
+              className="flex flex-col items-center"
+              variants={popIn}
+              initial='hidden'
+              whileInView='visible'
+              transition={{
+                ease: 'linear',
+                duration: 0.3,
+                delayChildren: 0.3,
+              }}
               onHoverStart={() => setShowDesc(id)}
               onHoverEnd={() => setShowDesc(null)}
-              variants={popIn}
-              initial="hidden"
-              whileInView="visible"
             >
               <Card>
-                <p>
-                  {title}
-                  <Cursor />
-                </p>
+                <motion.img
+                  src={Image}
+                  alt={name}
+                  onClick={() => setShowDesc(activeDesc ? null : id)}
+                  variants={fadeIn}
+                />
               </Card>
-
-              <motion.img
-                src={Image}
-                alt={name}
-                className="shadow-md ring-2 ring-accent"
-                onClick={() => setShowDesc(activeDesc ? null : id)}
-              />
 
               <AnimatePresence>
                 {activeDesc && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ ease: "linear" }}
+                    className="mx-6"
+                    variants={popIn}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
                   >
                     <Card>
                       <p className="text-left">
@@ -84,12 +88,20 @@ function Projects() {
         })}
       </div>
 
-      <Card>
-        <p>
-          All data displayed are for demonstration purposes only.
-          <Cursor />
-        </p>
-      </Card>
+      <motion.div
+        variants={popIn}
+        initial='hidden'
+        whileInView='visible'
+        transition={{
+          ease: 'linear',
+          duration: 0.3,
+          delayChildren: stagger(0.03, { startDelay: 0.3 }),
+        }}
+      >
+        <Card>
+          <RevealText text="All data displayed are for demonstration purposes only." />
+        </Card>
+      </motion.div>
     </div>
   );
 }

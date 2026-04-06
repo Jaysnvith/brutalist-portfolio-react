@@ -1,12 +1,12 @@
-import { useState, type JSX } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { useState, type JSX } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import {
   PiBrainFill,
   PiBriefcaseFill,
   PiIdentificationBadgeFill,
   PiList,
-} from "react-icons/pi";
-import { popIn } from "../animations/popIn";
+} from 'react-icons/pi';
+import { popIn } from '../animations/popIn';
 
 type Menus = {
   label: string;
@@ -17,36 +17,36 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menus: Menus[] = [
-    { label: "ABOUT", icon: <PiIdentificationBadgeFill /> },
-    { label: "SKILLS", icon: <PiBrainFill /> },
-    { label: "PROJECTS", icon: <PiBriefcaseFill /> },
+    { label: 'ABOUT', icon: <PiIdentificationBadgeFill /> },
+    { label: 'SKILLS', icon: <PiBrainFill /> },
+    { label: 'PROJECTS', icon: <PiBriefcaseFill /> },
   ];
 
   return (
     <>
       <motion.nav
-        className="bg-background text-foreground"
+        className='bg-background text-foreground'
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ ease: "linear" }}
+        transition={{ ease: 'linear' }}
       >
-        <div className="flex items-center justify-between min-h-12 max-w-7xl mx-auto px-6">
-          <p className="text-sm text-neutral-400">
+        <div className='flex items-center justify-between min-h-12 max-w-7xl mx-auto px-6'>
+          <p className='text-sm text-neutral-400'>
             <a
-              href="https://github.com/Jaysnvith/brutalist-portfolio-react"
-              className="hover:text-accent"
+              href='https://github.com/Jaysnvith/brutalist-portfolio-react'
+              className='hover:text-accent'
             >
               PORTFOLIO
             </a>
-            {" // "}PANJI M.B
+            {' // '}PANJI M.B
           </p>
-          
-          <ul className="hidden md:flex gap-8">
+
+          <ul className='hidden md:flex gap-8'>
             {menus.map((menu) => (
               <li key={menu.label}>
                 <a
                   href={`#${menu.label.toLocaleLowerCase()}`}
-                  className="flex items-center gap-2 hover:bg-foreground hover:text-background transition-colors"
+                  className='flex items-center gap-2 hover:bg-foreground active:bg-foreground hover:text-background transition-colors'
                 >
                   {menu.icon}
                   <span>{menu.label}</span>
@@ -56,7 +56,7 @@ function Navbar() {
           </ul>
 
           <button
-            className="md:hidden flex items-center gap-2 cursor-pointer"
+            className='md:hidden flex items-center gap-2 cursor-pointer'
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <PiList />
@@ -67,18 +67,18 @@ function Navbar() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            className="bg-background text-foreground"
+            className='bg-background text-foreground'
             variants={popIn}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
+            initial='hidden'
+            animate='visible'
+            exit='hidden'
           >
-            <ul className="flex flex-col gap-8 p-6">
+            <ul className='flex flex-col gap-8 p-6'>
               {menus.map((menu) => (
                 <li key={menu.label}>
                   <a
                     href={`#${menu.label.toLocaleLowerCase()}`}
-                    className="flex items-center gap-2 active:bg-foreground active:text-background transition-colors"
+                    className='flex items-center gap-2 active:bg-foreground active:text-background transition-colors'
                   >
                     {menu.icon}
                     <span>{menu.label}</span>

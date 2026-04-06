@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { useState } from 'react';
+import { AnimatePresence, motion, stagger } from 'motion/react';
 import {
   PiEnvelopeFill,
   PiGithubLogoFill,
   PiInstagramLogoFill,
   PiPhoneCallFill,
   PiThreadsLogoFill,
-} from "react-icons/pi";
-import { IconContext } from "react-icons";
-import { popIn } from "../animations/popIn";
-import { slideOut } from "../animations/slideOut";
-import { contactData } from "../data/contact.data";
-import { socialData } from "../data/social.data";
-import Card from "../components/Card";
-import Cursor from "../components/Cursor";
+} from 'react-icons/pi';
+import { IconContext } from 'react-icons';
+import { popIn } from '../animations/popIn';
+import { contactData } from '../data/contact.data';
+import { socialData } from '../data/social.data';
+import Card from '../components/Card';
+import { HighlightOverlay } from '../components/HighlightOverlay';
+import { RevealText } from '../components/RevealText';
 
 const contactIcon = {
   email: PiEnvelopeFill,
@@ -42,124 +42,114 @@ function About() {
   return (
     <div>
       <motion.div
-        className="flex mb-16 text-4xl"
+        className='flex mb-16 text-4xl'
         variants={popIn}
-        initial="hidden"
-        whileInView="visible"
+        initial='hidden'
+        whileInView='visible'
+        transition={{ ease: 'linear', duration: 0.3 }}
       >
-        <Card className="px-2">#01</Card>
-        <Card className="px-2">ABOUT ME</Card>
+        <Card className='px-2'>#01</Card>
+        <Card className='px-2'>ABOUT ME</Card>
       </motion.div>
 
       <motion.div
-        className="mb-32"
+        className='mb-32'
         variants={popIn}
-        initial="hidden"
-        whileInView="visible"
+        initial='hidden'
+        whileInView='visible'
+        transition={{
+          ease: 'linear',
+          duration: 0.3,
+          delayChildren: stagger(0.03, { startDelay: 0.3 }),
+        }}
       >
         <Card>
-          <p className="text-left">
-            Software developer experienced in building practical business applications, including internal
-            dashboards and operational systems that streamline workflows and support company-wide operations.
-            With additional background in IT operations, giving me practical insight into both application
-            development and infrastructure support.
-            <Cursor />
-          </p>
+          <RevealText
+            text='
+            Software developer experienced in building practical business
+            applications, including internal dashboards and operational systems
+            that streamline workflows and support company-wide operations. With
+            additional background in IT operations, giving me practical insight
+            into both application development and infrastructure support.
+          '
+          />
         </Card>
       </motion.div>
 
       <motion.div
-        className="flex flex-col items-center gap-6"
+        className='flex flex-col items-center gap-6'
         variants={popIn}
-        initial="hidden"
-        whileInView="visible"
+        initial='hidden'
+        whileInView='visible'
+        transition={{
+          ease: 'linear',
+          duration: 0.3,
+          delayChildren: stagger(0.03, { startDelay: 0.3 }),
+        }}
       >
         <Card>
-          <p>
-            Get in touch...
-            <Cursor />
-          </p>
+          <RevealText text='Get in touch...' />
         </Card>
 
-        <div className="flex gap-4">
-          <IconContext.Provider value={{ size: "42" }}>
+        <IconContext.Provider value={{ size: '42' }}>
+          <div className='flex flex-col md:flex-row gap-4 items-center'>
             {contactData.map(({ id, name, value }) => {
               const Icon = contactIcon[name as keyof typeof contactIcon];
               const activeContact = contactHovered === id;
-
               return (
-                <div className="relative inline-flex">
+                <motion.button
+                  key={id}
+                  className='relative flex gap-2 items-center p-1 bg-background text-foreground'
+                  variants={popIn}
+                  transition={{ ease: 'linear', }}
+                  onClick={() => {
+                    handleCopy(value, id);
+                    setContactHovered(id);
+                  }}
+                  onHoverStart={() => setContactHovered(id)}
+                  onHoverEnd={() => setContactHovered(null)}
+                >
+                  <Icon />
+                  <span className='overflow-hidden whitespace-nowrap'>
+                    {copied === id ? 'Copied !' : value}
+                  </span>
                   <AnimatePresence>
-                    {copied === id && (
-                      <motion.span
-                        className="absolute top-12 text-base bg-background text-foreground"
-                        variants={popIn}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                      >
-                        Copied!
-                      </motion.span>
-                    )}
+                    {activeContact && <HighlightOverlay />}
                   </AnimatePresence>
-
-                  <motion.button
-                    key={id}
-                    onClick={() => handleCopy(value, id)}
-                    className="flex items-center p-1 active:ring-2 hover:animate-pulse bg-background text-foreground"
-                    onHoverStart={() => setContactHovered(id)}
-                    onHoverEnd={() => setContactHovered(null)}
-                  >
-                    <Icon />
-                    <AnimatePresence>
-                      {activeContact && (
-                        <motion.span
-                          className="overflow-hidden whitespace-nowrap"
-                          initial={{ ...slideOut.hidden, paddingLeft: 0 }}
-                          animate={{ ...slideOut.visible, paddingLeft: 5 }}
-                          exit={{ ...slideOut.hidden, paddingLeft: 0 }}
-                        >
-                          {value}
-                        </motion.span>
-                      )}
-                    </AnimatePresence>
-                  </motion.button>
-                </div>
+                </motion.button>
               );
             })}
+          </div>
 
+          <div className='flex flex-col md:flex-row gap-4'>
             {socialData.map(({ id, name, value }) => {
               const Icon = skillMap[name as keyof typeof skillMap];
               const activeSocial = socialHovered === id;
-
               return (
                 <motion.a
                   key={id}
                   href={value}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center p-1 active:ring-2 hover:animate-pulse bg-background text-foreground transition-shadow"
+                  rel='noopener noreferrer'
+                  target='_blank'
+                  className='relative flex gap-2 items-center p-1 bg-background text-foreground'
+                  variants={popIn}
+                  transition={{ ease: 'linear', }}
+                  onClick={() => setSocialHovered(id)}
                   onHoverStart={() => setSocialHovered(id)}
                   onHoverEnd={() => setSocialHovered(null)}
                 >
                   <Icon />
+                  <motion.span className='overflow-hidden whitespace-nowrap'>
+                    {new URL(value).pathname}
+                  </motion.span>
                   <AnimatePresence>
-                    {activeSocial && (
-                      <motion.span
-                        className="overflow-hidden whitespace-nowrap"
-                        initial={{ ...slideOut.hidden, paddingLeft: 0 }}
-                        animate={{ ...slideOut.visible, paddingLeft: 5 }}
-                        exit={{ ...slideOut.hidden, paddingLeft: 0 }}
-                      >
-                        {new URL(value).pathname}
-                      </motion.span>
-                    )}
+                    {activeSocial && <HighlightOverlay />}
                   </AnimatePresence>
                 </motion.a>
               );
             })}
-          </IconContext.Provider>
-        </div>
+          </div>
+        </IconContext.Provider>
       </motion.div>
     </div>
   );

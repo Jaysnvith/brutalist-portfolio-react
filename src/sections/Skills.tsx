@@ -1,25 +1,27 @@
-import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { popIn } from "../animations/popIn";
-import { categories, skillData } from "../data/skill.data";
-import Card from "../components/Card";
-import Cpp from "../assets/svg/cpp.svg?react";
-import Csharp from "../assets/svg/csharp.svg?react";
-import Python from "../assets/svg/python.svg?react";
-import Java from "../assets/svg/java.svg?react";
-import Html5 from "../assets/svg/html5.svg?react";
-import Php from "../assets/svg/php.svg?react";
-import Css3 from "../assets/svg/css3.svg?react";
-import Js from "../assets/svg/js.svg?react";
-import Ts from "../assets/svg/ts.svg?react";
-import Django from "../assets/svg/django.svg?react";
-import React from "../assets/svg/react.svg?react";
-import TailwindCss from "../assets/svg/tailwindcss.svg?react";
-import BulmaUi from "../assets/svg/bulmaui.svg?react";
-import Bootstrap5 from "../assets/svg/bootstrap5.svg?react";
-import Mysql from "../assets/svg/mysql.svg?react";
-import Postgresql from "../assets/svg/postgresql.svg?react";
-import MsqlServer from "../assets/svg/msqlserver.svg?react";
+import { useState } from 'react';
+import { AnimatePresence, motion, stagger } from 'motion/react';
+import { popIn } from '../animations/popIn';
+import { categories, skillData } from '../data/skill.data';
+import Card from '../components/Card';
+import Cpp from '../assets/svg/cpp.svg?react';
+import Csharp from '../assets/svg/csharp.svg?react';
+import Python from '../assets/svg/python.svg?react';
+import Java from '../assets/svg/java.svg?react';
+import Html5 from '../assets/svg/html5.svg?react';
+import Php from '../assets/svg/php.svg?react';
+import Css3 from '../assets/svg/css3.svg?react';
+import Js from '../assets/svg/js.svg?react';
+import Ts from '../assets/svg/ts.svg?react';
+import Django from '../assets/svg/django.svg?react';
+import React from '../assets/svg/react.svg?react';
+import TailwindCss from '../assets/svg/tailwindcss.svg?react';
+import BulmaUi from '../assets/svg/bulmaui.svg?react';
+import Bootstrap5 from '../assets/svg/bootstrap5.svg?react';
+import Mysql from '../assets/svg/mysql.svg?react';
+import Postgresql from '../assets/svg/postgresql.svg?react';
+import MsqlServer from '../assets/svg/msqlserver.svg?react';
+import { fadeIn } from '../animations/fadeIn';
+import { HighlightOverlay } from '../components/HighlightOverlay';
 
 const skillIcon = {
   python: Python,
@@ -42,88 +44,93 @@ const skillIcon = {
 } as const;
 
 function Skills() {
-  const [selectCategory, setSelectCategory] = useState<string | null>(
-    "language",
-  );
+  const [selectCategory, setSelectCategory] = useState<string | null>('language');
   const [showDesc, setShowDesc] = useState<string | null>(null);
 
   return (
     <div>
       <motion.div
-        className="flex mb-16 text-4xl"
+        className='flex mb-16 text-4xl'
         variants={popIn}
-        initial="hidden"
-        whileInView="visible"
+        initial='hidden'
+        whileInView='visible'
+        transition={{ ease: 'linear', duration: 0.3 }}
       >
-        <Card className="px-2">#02</Card>
-        <Card className="px-2">MY SKILLS</Card>
+        <Card className='px-2'>#02</Card>
+        <Card className='px-2'>MY SKILLS</Card>
       </motion.div>
 
-      <motion.div variants={popIn} initial="hidden" whileInView="visible">
-        <Card className="grid grid-rows-3 md:grid-rows-2 grid-cols-3 md:grid-cols-5 gap-6">
-          {skillData
-            .filter((skill) => skill.category === selectCategory)
-            .map(({ id, value }) => {
-              const Icon = skillIcon[value as keyof typeof skillIcon];
-              const activeDesc = showDesc === id;
+      <div className='flex flex-col gap-6'>
+        <motion.div
+          key={selectCategory}
+          variants={popIn}
+          initial='hidden'
+          whileInView='visible'
+          transition={{
+            ease: 'linear',
+            duration: 0.3,
+            delayChildren: stagger(0.03, { startDelay: 0.3 }),
+          }}
+        >
+          <Card className='grid grid-rows-3 md:grid-rows-2 grid-cols-3 md:grid-cols-6 gap-6'>
+            {skillData
+              .filter((skill) => skill.category === selectCategory)
+              .map(({ id, value }) => {
+                const Icon = skillIcon[value as keyof typeof skillIcon];
+                const activeDesc = showDesc === value;
+                return (
+                  <motion.button
+                    key={id}
+                    className='relative m-4'
+                    variants={fadeIn}
+                    onClick={() => setShowDesc(value)}
+                    onHoverStart={() => setShowDesc(value)}
+                    onHoverEnd={() => setShowDesc(null)}
+                  >
+                    <Icon />
+                    <AnimatePresence>
+                      {activeDesc && <HighlightOverlay />}
+                    </AnimatePresence>
+                  </motion.button>
+                );
+              })}
+          </Card>
+        </motion.div>
 
-              return (
-                <motion.button
-                  key={id}
-                  className="relative m-4 p-1"
-                  initial={{ boxShadow: "0 0 0 0 rgba(0,0,0,0)" }}
-                  animate={{
-                    boxShadow: activeDesc
-                      ? "0 0 0 2px var(--color-foreground)"
-                      : "0 0 0 0 rgba(0,0,0,0)",
-                  }}
-                  onHoverStart={() => setShowDesc(id)}
-                  onHoverEnd={() => setShowDesc(null)}
-                  onClick={() => setShowDesc(activeDesc ? null : id)}
-                >
-                  <Icon className="hover:animate-pulse" />
-
-                  <AnimatePresence>
-                    {activeDesc && (
-                      <motion.span
-                        className="absolute top-1 left-1 ring-2 bg-background text-foreground"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                      >
-                        {value}
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </motion.button>
-              );
-            })}
-        </Card>
-      </motion.div>
-
-      <motion.div
-        className="-mt-2 ml-6 w-fit"
-        variants={popIn}
-        initial="hidden"
-        whileInView="visible"
-      >
-        <Card className="flex flex-col items-start gap-2">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectCategory(category)}
-              className="uppercase"
-            >
-              <span className={`${selectCategory === category ? "visible" : "invisible"}`}>
-                ►
-              </span>
-              <span className="mx-2 py-1 hover:bg-foreground hover:text-background transition-colors">
-                {category}
-              </span>
-            </button>
-          ))}
-        </Card>
-      </motion.div>
+        <motion.div
+          className='self-end mr-6 md:mr-12'
+          variants={popIn}
+          initial='hidden'
+          whileInView='visible'
+          transition={{
+            ease: 'linear',
+            duration: 0.3,
+            delayChildren: stagger(0.03, { startDelay: 0.3 }),
+          }}
+        >
+          <Card className='p-4'>
+            <motion.div className='flex flex-col gap-6' variants={fadeIn}>
+              <div className='flex flex-col gap-2 items-center'>
+                <p className='font-bold text-accent text-2xl mb-2'>
+                  What'll you pick ?
+                </p>
+                <p>► {showDesc} ◄</p>
+              </div>
+              <div className='flex flex-col gap-1'>
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    className={`uppercase ${selectCategory === category ? 'border' : ''} hover:bg-foreground active:bg-foreground hover:text-background transition-colors`}
+                    onClick={() => setSelectCategory(category)}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </Card>
+        </motion.div>
+      </div>
     </div>
   );
 }
