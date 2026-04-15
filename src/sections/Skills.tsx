@@ -98,7 +98,7 @@ function Skills() {
         </motion.div>
 
         <motion.div
-          className='self-end mr-6 md:mr-12'
+          className='md:self-end md:mr-12'
           variants={popIn}
           initial='hidden'
           whileInView='visible'
@@ -111,16 +111,15 @@ function Skills() {
           <Card className='p-4'>
             <motion.div className='flex flex-col gap-6' variants={fadeIn}>
               <div className='flex flex-col gap-2 items-center'>
-                <p className='font-bold text-accent text-2xl mb-2'>
+                <p className='font-bold text-accent text-2xl'>
                   What'll you pick ?
                 </p>
-                <p>► {showDesc} ◄</p>
               </div>
-              <div className='flex flex-col gap-1'>
+              <div className='flex flex-col'>
                 {categories.map((category) => (
                   <button
                     key={category}
-                    className={`uppercase ${selectCategory === category ? 'border' : ''} hover:bg-foreground active:bg-foreground hover:text-background transition-colors`}
+                    className={`capitalize border ${selectCategory === category ? 'py-4 bg-accent/20 animate-pulse' : 'py-2 bg-foreground/20 hover:bg-accent/20'} transition-all`}
                     onClick={() => setSelectCategory(category)}
                   >
                     {category}
