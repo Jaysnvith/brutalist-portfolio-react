@@ -24,10 +24,19 @@ function Projects() {
   const [showButton, setShowButton] = useState<boolean>(false);
   const [clickedButton, setClickedButton] = useState<'next' | 'previous' | null>(null)
 
+  function navigateProject(action: 'next' | 'previous') {
+    if (showProject === projectData.length - 1) {
+      setShowProject(0)
+    } else {
+      setShowProject(showProject + 1);
+    }
+    setClickedButton(action)
+  }
+
   return (
     <div>
       <motion.div
-        className="flex mb-16 text-4xl"
+        className="flex mb-16"
         variants={popIn}
         initial="hidden"
         whileInView="visible"
@@ -77,14 +86,7 @@ function Projects() {
                     initial="hidden"
                     animate={clickedButton === 'previous' ? 'clicked' : 'idle'}
                     exit="hidden"
-                    onClick={() => {
-                      if (showProject === 0) {
-                        setShowProject(projectData.length - 1)
-                      } else {
-                        setShowProject(showProject - 1)
-                      }
-                      setClickedButton('previous')
-                    }}
+                    onClick={() => navigateProject('previous')}
                     onAnimationComplete={(definiton) => {
                       if(definiton === 'clicked') setClickedButton(null)
                     }}
@@ -101,14 +103,7 @@ function Projects() {
                     initial="hidden"
                     animate={clickedButton === 'next' ? 'clicked' : 'idle'}
                     exit="hidden"
-                    onClick={() => {
-                      if (showProject === projectData.length - 1) {
-                        setShowProject(0)
-                      } else {
-                        setShowProject(showProject + 1);
-                      }
-                      setClickedButton('next')
-                    }}
+                    onClick={() => navigateProject('next')}
                     onAnimationComplete={(definiton) => {
                       if(definiton === 'clicked') setClickedButton(null)
                     }}
@@ -119,8 +114,23 @@ function Projects() {
               )}
             </AnimatePresence>
           </motion.div>
+          <div className="md:hidden flex justify-between mb-1 mt-2 mx-2" >
+            <motion.button
+              className="w-1/3 p-2 bg-foreground/20 text-foreground active:bg-green-500/50 transition-colors"
+              onClick={() => navigateProject('previous')}
+            >
+              PREVIOUS
+            </motion.button>
+            <motion.button
+              className="w-1/3 p-2 bg-foreground/20 text-foreground active:bg-green-500/50 transition-colors"
+              onClick={() => navigateProject('next')}
+            >
+              NEXT
+            </motion.button>
+          </div>
         </Card>
       </motion.div>
+
 
       <motion.div
         key={showProject}
