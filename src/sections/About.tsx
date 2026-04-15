@@ -53,7 +53,7 @@ function About() {
       </motion.div>
 
       <motion.div
-        className='mb-32'
+        className='mb-6 md:mb-32'
         variants={popIn}
         initial='hidden'
         whileInView='visible'

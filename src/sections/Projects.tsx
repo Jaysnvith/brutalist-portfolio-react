@@ -134,7 +134,7 @@ function Projects() {
 
       <motion.div
         key={showProject}
-        className="md:w-1/2 mx-auto mt-5"
+        className="md:w-1/2 mx-auto mt-6"
         variants={popIn}
         initial='hidden'
         whileInView='visible'
