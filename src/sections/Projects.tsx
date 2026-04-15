@@ -36,7 +36,7 @@ function Projects() {
   return (
     <div>
       <motion.div
-        className="flex mb-16"
+        className="flex mb-16 text-4xl"
         variants={popIn}
         initial="hidden"
         whileInView="visible"
