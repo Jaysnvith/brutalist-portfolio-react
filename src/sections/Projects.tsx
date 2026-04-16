@@ -68,9 +68,11 @@ function Projects() {
                 key={showProject}
                 src={projectImage[projectData[showProject].name as keyof typeof projectImage]}
                 alt="Image"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                className="w-full h-40 md:h-140 object-cover object-top"
+                variants={fadeIn}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
               />
             </AnimatePresence>
             <AnimatePresence>
