@@ -8,12 +8,9 @@ import {
   PiThreadsLogoFill,
 } from 'react-icons/pi';
 import { IconContext } from 'react-icons';
-import { popIn } from '../animations/popIn';
-import { contactData } from '../data/contact.data';
-import { socialData } from '../data/social.data';
-import Card from '../components/Card';
-import { HighlightOverlay } from '../components/HighlightOverlay';
-import { RevealText } from '../components/RevealText';
+import { contactData, socialData } from '@/data';
+import { Card, HighlightOverlay, RevealText } from '@/components';
+import { popIn } from '@/animations';
 
 const contactIcon = {
   email: PiEnvelopeFill,

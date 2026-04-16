@@ -3,7 +3,7 @@ import Footer from "./sections/Footer";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
-import { BackgroundSquare } from "./components/BackgroundSquare";
+import { BackgroundSquare } from "./components";
 
 function App() {
   return (

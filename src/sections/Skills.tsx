@@ -1,27 +1,10 @@
 import { useState } from 'react';
 import { AnimatePresence, motion, stagger } from 'motion/react';
-import { popIn } from '../animations/popIn';
-import { categories, skillData } from '../data/skill.data';
-import Card from '../components/Card';
-import Cpp from '../assets/svg/cpp.svg?react';
-import Csharp from '../assets/svg/csharp.svg?react';
-import Python from '../assets/svg/python.svg?react';
-import Java from '../assets/svg/java.svg?react';
-import Html5 from '../assets/svg/html5.svg?react';
-import Php from '../assets/svg/php.svg?react';
-import Css3 from '../assets/svg/css3.svg?react';
-import Js from '../assets/svg/js.svg?react';
-import Ts from '../assets/svg/ts.svg?react';
-import Django from '../assets/svg/django.svg?react';
-import React from '../assets/svg/react.svg?react';
-import TailwindCss from '../assets/svg/tailwindcss.svg?react';
-import BulmaUi from '../assets/svg/bulmaui.svg?react';
-import Bootstrap5 from '../assets/svg/bootstrap5.svg?react';
-import Mysql from '../assets/svg/mysql.svg?react';
-import Postgresql from '../assets/svg/postgresql.svg?react';
-import MsqlServer from '../assets/svg/msqlserver.svg?react';
-import { fadeIn } from '../animations/fadeIn';
-import { HighlightOverlay } from '../components/HighlightOverlay';
+import { categories, skillData } from '@/data';
+import { Card, HighlightOverlay } from '@/components';
+import { fadeIn, popIn } from '@/animations';
+import { Bootstrap5, BulmaUi, Cpp, Csharp, Css3, Django, Html5, Java, Js, MsqlServer, Mysql, Php, Postgresql, Python, React, TailwindCss, Ts } from '@/assets/svg'
+
 
 const skillIcon = {
   python: Python,

@@ -1,0 +1,5 @@
+export { default as fantasia } from "./work-fantasia.webp"
+export { default as wiredCity } from "./work-wired-city.webp"
+export { default as wiredGunStore } from "./work-wired-gun-store.webp"
+export { default as salesDashboard } from "./work-sales-dashboard.webp"
+export { default as guestbook } from "./work-guestbook.webp"

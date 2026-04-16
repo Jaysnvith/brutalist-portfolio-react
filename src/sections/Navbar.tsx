@@ -6,7 +6,8 @@ import {
   PiIdentificationBadgeFill,
   PiList,
 } from 'react-icons/pi';
-import { popIn } from '../animations/popIn';
+import { popIn } from '@/animations';
+
 
 type Menus = {
   label: string;

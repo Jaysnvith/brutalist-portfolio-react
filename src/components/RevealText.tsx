@@ -1,5 +1,5 @@
+import { fadeIn } from '@/animations';
 import { motion } from 'motion/react';
-import { fadeIn } from '../animations/fadeIn';
 import Cursor from './Cursor';
 
 export function RevealText({ text }: { text: string }) {

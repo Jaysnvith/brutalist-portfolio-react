@@ -1,15 +1,10 @@
 import { useState } from "react";
 import { AnimatePresence, motion, stagger } from "motion/react";
-import { popIn } from "../animations/popIn";
-import { projectData } from "../data/project.data";
-import fantasia from "../assets/img/work-fantasia.webp";
-import wiredCity from "../assets/img/work-wired-city.webp";
-import wiredGunStore from "../assets/img/work-wired-gun-store.webp";
-import salesDashboard from "../assets/img/work-sales-dashboard.webp";
-import guestbook from "../assets/img/work-guestbook.webp";
-import Card from "../components/Card";
-import { fadeIn } from "../animations/fadeIn";
-import { RevealText } from "../components/RevealText";
+import { projectData } from "@/data";
+import { Card, RevealText } from "@/components";
+import { fadeIn, popIn } from "@/animations";
+import { fantasia, guestbook, salesDashboard, wiredCity, wiredGunStore } from "@/assets/img";
+
 
 const projectImage = {
   fantasia: fantasia,
