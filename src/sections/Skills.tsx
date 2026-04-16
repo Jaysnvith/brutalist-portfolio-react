@@ -5,7 +5,6 @@ import { Card, HighlightOverlay } from '@/components';
 import { fadeIn, popIn } from '@/animations';
 import { Bootstrap5, BulmaUi, Cpp, Csharp, Css3, Django, Html5, Java, Js, MsqlServer, Mysql, Php, Postgresql, Python, React, TailwindCss, Ts } from '@/assets/svg'
 
-
 const skillIcon = {
   python: Python,
   cpp: Cpp,

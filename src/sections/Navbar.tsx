@@ -8,7 +8,6 @@ import {
 } from 'react-icons/pi';
 import { popIn } from '@/animations';
 
-
 type Menus = {
   label: string;
   icon: JSX.Element;

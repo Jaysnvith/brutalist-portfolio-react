@@ -5,7 +5,6 @@ import { Card, RevealText } from "@/components";
 import { fadeIn, popIn } from "@/animations";
 import { fantasia, guestbook, salesDashboard, wiredCity, wiredGunStore } from "@/assets/img";
 
-
 const projectImage = {
   fantasia: fantasia,
   wiredCity: wiredCity,
