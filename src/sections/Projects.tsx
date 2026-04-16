@@ -5,6 +5,7 @@ import { Card, RevealText } from "@/components";
 import { fadeIn, popIn } from "@/animations";
 import { fantasia, guestbook, salesDashboard, wiredCity, wiredGunStore } from "@/assets/img";
 
+
 const projectImage = {
   fantasia: fantasia,
   wiredCity: wiredCity,
@@ -19,11 +20,18 @@ function Projects() {
   const [clickedButton, setClickedButton] = useState<'next' | 'previous' | null>(null)
 
   function navigateProject(action: 'next' | 'previous') {
-    if (showProject === projectData.length - 1) {
-      setShowProject(0)
-    } else {
-      setShowProject(showProject + 1);
+    if (action === 'previous') {
+      if (showProject === 0) 
+        setShowProject(projectData.length - 1)
+      else
+        setShowProject(showProject - 1);
+    } else if (action === 'next') {
+      if (showProject === projectData.length - 1)
+        setShowProject(0)
+      else
+        setShowProject(showProject + 1);
     }
+    
     setClickedButton(action)
   }
 
